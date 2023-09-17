@@ -15,8 +15,36 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.render("home", {});
+  res.render("home", { startingContent : homeStartingContent });
 });
+
+app.get("/about", (req, res) => {
+  res.render("about", { startingAbout : aboutContent });
+});
+
+app.get("/contact", (req, res) => {
+  res.render("contact", { startingContact : contactContent });
+});
+
+app.get("/compose", (req, res) => {
+    res.render("compose");
+
+});   
+    
+app.post("/compose", (req, res) => {
+      const postTitle= req.body.postTitle;
+      const postBody= req.body.postBody;
+
+     
+      const thePost ={
+        theTitle: postTitle,
+        thePost: postBody
+      }
+
+});
+
+
+
 
 app.listen(port, () => {
   console.log("Server started on port " + port);
