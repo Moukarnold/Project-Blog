@@ -18,6 +18,7 @@ app.use(express.static("public"));
 var posts=[ ];
 
 
+
 app.get("/", (req, res) => {
 
   res.render("home", {
@@ -49,10 +50,15 @@ app.post("/compose", (req, res) => {
         content: postBody
       };
       posts.push(thePost);
- res.redirect("/");
+      res.redirect("/");
 
 });
 
+app.get("/posts", (req, res) => {
+  res.render("post");
+
+});   
+  
 app.get(`/posts/:postName`, (req, res)=>{
     const requestedTitle = _.lowerCase(req.params.postName);
 
